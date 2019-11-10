@@ -12,6 +12,8 @@ This is an implementation of  the paper :**The paper from Shenzhen University,it
 + data/video-1
 + data/video-2
 
+Feature csv file of all dataset have produced in "data" folder 
+
 ## usage
 
 + feature-extraction.py
