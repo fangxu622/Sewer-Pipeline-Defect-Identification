@@ -5,6 +5,8 @@ import pandas as pd
 import shutil
 import os
 import json
+import warnings
+warnings.filterwarnings("ignore")
 from sklearn import svm
 from sklearn.cluster import KMeans,DBSCAN,AgglomerativeClustering
 from sklearn.covariance import EllipticEnvelope
@@ -342,7 +344,10 @@ def create_Dir(algorithm_In=None,feat_select=None,root_path="./"):
     if feat_select:
         pre_dir="_"
         dir_tem=pre_dir.join(feat_select)
-        out_res_path1=os.path.join(root_path,algorithm_In["Alogrithm"],dir_tem)
+        if algorithm_In["Alogrithm"]=="EllipticEnvelop":
+            out_res_path1=os.path.join(root_path,"Gaussian-D",dir_tem)
+        else:
+            out_res_path1=os.path.join(root_path,algorithm_In["Alogrithm"],dir_tem)
         if os.path.exists(out_res_path1):
             shutil.rmtree(out_res_path1)
         os.makedirs(out_res_path1)
@@ -350,7 +355,11 @@ def create_Dir(algorithm_In=None,feat_select=None,root_path="./"):
         return fileN,out_res_path1
 
     else:
-        out_res_path1=os.path.join(root_path,algorithm_In["Alogrithm"])
+        if algorithm_In["Alogrithm"]=="EllipticEnvelop":
+            out_res_path1=os.path.join(root_path,"Gaussian-D")
+        else:
+            out_res_path1=os.path.join(root_path,algorithm_In["Alogrithm"])
+
         if os.path.exists(out_res_path1):
             shutil.rmtree(out_res_path1)
         os.makedirs(out_res_path1)
@@ -374,16 +383,36 @@ if __name__ == "__main__":
     args = parser.parse_args()
     #public params
 
-    # data1
-    gt_file=r"G:\Linux-Proj\capuse_detection\data1-gt\all-label\gt_label.json"
-    path=r"G:\Linux-Proj\capuse_detection\data1-gt\all_features_1.csv"
-    img_dir=r"G:\Linux-Proj\capuse_detection\data1-gt\all-2"
-    out_dir=r"G:\Linux-Proj\capuse_detection\experiment1\data1_res2"
+    # data1  (video1)
+    # gt_file=r"G:\Linux-Proj\capuse_detection\data1-gt\all-label\gt_label.json"
+    # path=r"G:\Linux-Proj\capuse_detection\data1-gt\all_features_1.csv"
+    # img_dir=r"G:\Linux-Proj\capuse_detection\data1-gt\all-2"
+    # out_dir=r"G:\Linux-Proj\capuse_detection\experiment1\data1_res2"
     
     # gt_file=r"G:\Linux-Proj\capuse_detection\data4-gt\all-label\gt_label.json"
     # path=r"G:\Linux-Proj\capuse_detection\data4-gt\all_features_4.csv"
     # img_dir=r"G:\Linux-Proj\capuse_detection\data4-gt\all-2"
     # out_dir=r"G:\Linux-Proj\capuse_detection\experiment1\data4_res1"
+
+    # data1  (video1)
+    gt_file=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\data\video-1\gt_label.json"
+    path=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\data\video-1\all_features_1.csv"
+    #img_dir=r"G:\Linux-Proj\capuse_detection\data1-gt\all-2"
+    out_dir=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\experiment-2\video-1"
+
+
+    # data2  (video2)
+    # gt_file=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\data\video-2\gt_label.json"
+    # path=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\data\video-2\all_features_2.csv"
+    # #img_dir=r"G:\Linux-Proj\capuse_detection\data1-gt\all-2"
+    # out_dir=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\experiment-2\video-2"
+
+    # data3  (dataset1)
+    # gt_file=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\data\dataset-1\gt_label.json"
+    # path=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\data\dataset-1\all_features_4.csv"
+    # #img_dir=r"G:\Linux-Proj\capuse_detection\data1-gt\all-2"
+    # out_dir=r"G:\Linux-Proj\capuse_detection\Sewer-Pipeline-Defect-Identification\experiment-2\dataset-1"
+
     
     
     #res_filename="res.txt"
@@ -411,7 +440,7 @@ if __name__ == "__main__":
 
 
     #algorithm_M=[iForest_M,oneClass_SVM_M,Gaussion_D_M ,LocalOutlierFactor_M,Kmeans_M,DBSCAN_M,AgglomerativeClustering_M]
-    algorithm_M=[iForest_M,Gaussion_D_M]#,LocalOutlierFactor_M]oneClass_SVM_M,
+    algorithm_M=[iForest_M,Gaussion_D_M,LocalOutlierFactor_M,oneClass_SVM_M]
     
     feat_select=[feat_combine1,feat_combine2,feat_combine3,feat_combine4,feat_combine5,feat_combine6,feat_combine7]
     #algorithm_M=Kmeans_M
