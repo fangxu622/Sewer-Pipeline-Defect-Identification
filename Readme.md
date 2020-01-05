@@ -4,7 +4,7 @@ This is an implementation of  the paper :**The paper from Shenzhen University,it
 
 ## Required packages:
 + python 3+
-+ sklearn 0.20.3+
++ sklearn 0.20.3
 
 
 ## Data
