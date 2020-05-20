@@ -1,6 +1,6 @@
 
 ## Overview
-This is an implementation of  the paper :**The paper from Shenzhen University,it will be public when accepted**
+This is an implementation of  the paper :**Sewer Pipeline Fault Identification Using Anomaly Detection Algorithms on Video Sequences**
 
 ## Required packages:
 + python 3+
@@ -13,7 +13,8 @@ This is an implementation of  the paper :**The paper from Shenzhen University,it
 + data/video-2 
 + Dataset url 
    + BaiduYunPan：
-   https://pan.baidu.com/s/1Az-YWz7-0BW3JRAxoKLr9g  **Password：p5vj**
+  链接：https://pan.baidu.com/s/1Pi9K__knSjFcZoHz3I37SA 
+    提取码：n2lc
    + Google Drive: 
    https://drive.google.com/drive/folders/17z7fOopeP1bf4jVx6eX-uoXg6Db8QC9N?usp=sharing
 
